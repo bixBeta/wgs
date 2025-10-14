@@ -14,7 +14,9 @@ table_sample_merge:
   primary : "primary"
   dupMarked : "dupMarked"
 
-table_columns_name:
-  qualimap:
-    percent_aligned:
-      title: "% reads parsed by QC"
+
+report_general_stats_table:
+  rename_columns:
+    header_qualimap_bamqc-mapped_reads: "BamQC %"
+
+
