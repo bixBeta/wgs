@@ -17,4 +17,4 @@ table_sample_merge:
 
 table_columns_name:
       Bowtie 2 / HiSAT2: 
-       "# bowtie_2_hisat2-overall_alignment_rate" : "ganf=gggg"
+        "# bowtie_2_hisat2-overall_alignment_rate" : "ganf=gggg"
