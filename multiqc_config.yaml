@@ -16,7 +16,6 @@ table_sample_merge:
 
 
 table_columns_name:
-  qualimap:
-    percentage_aligned: "BamQC %"
+   "# qualimap_bamqc-percentage_aligned": "BamQC %"
 
 
