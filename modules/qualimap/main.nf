@@ -22,6 +22,8 @@ process QUALIMAP {
             -nt 16 -c \\
             --java-mem-size=6G \\
             -outdir ${id}.bamqc
+        
+        sed -i "s/bam file = ${id}.dupMarked.bam/bam file = ${id}.bam/g" ${id}.bamqc/genome_results.txt
 
         """
 
