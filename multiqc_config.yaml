@@ -15,7 +15,7 @@ table_sample_merge:
   dupMarked : "dupMarked"
   bamqc : "bamqc"
 
-extra_info: 
-  General Stats: 
-    - "test"
-    - "test2"
+custom_data:
+  some_science:
+    section_name: "Some real science"
+    description: "This description comes from multiqc_config.yaml and helps to annotate the Custom Content image."
