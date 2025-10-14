@@ -15,8 +15,8 @@ table_sample_merge:
   dupMarked : "dupMarked"
 
 
-report_general_stats_table:
-  rename_columns:
+table_column_name:
+  BamQC:
     percentage_aligned: "BamQC %"
 
 
