@@ -10,7 +10,7 @@ plots_force_interactive: True
 
 
 table_sample_merge:
-  DEDUP : "DEDUP"
+  DEDUP : "DEDUPLICATED"
   primary : "primary"
   dupMarked : "dupMarked"
   bamqc : "bamqc"
