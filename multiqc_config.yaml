@@ -13,5 +13,8 @@ table_sample_merge:
   deduplicated : "DEDUP"
   primary : "primary"
   dupMarked : "dupMarked"
-  test : "dupMarkded.bam"
-  bamqc : "bamqc/genome_results.txt"
+
+table_columns_name:
+  qualimap:
+    percent_aligned:
+      title: "% reads parsed by QC"
