@@ -17,6 +17,6 @@ table_sample_merge:
 
 report_general_stats_table:
   rename_columns:
-    header_qualimap_bamqc-mapped_reads: "BamQC %"
+    percentage_aligned: "BamQC %"
 
 
