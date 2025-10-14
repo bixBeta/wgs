@@ -16,11 +16,11 @@ table_sample_merge:
 
 
 table_columns_name:
-  general_stats_table_table:
-      "header_qualimap_bamqc-mapped_reads": "BamQC %"
+  "QualiMap: BamQC":
+        "header_qualimap_bamqc-mapped_reads": "BamQC %"
 
 
 table_columns_visible:
-  general_stats_table:
+   "QualiMap: BamQC":
       "# qualimap_bamqc-percentage_aligned": false
 
