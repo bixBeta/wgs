@@ -16,4 +16,4 @@ table_sample_merge:
 
 
 table_columns_visible:
-    "header_bowtie_2_hisat2-overall_alignment_rate" : false
+    header_bowtie_2_hisat2-overall_alignment_rate : false
