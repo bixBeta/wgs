@@ -15,12 +15,6 @@ table_sample_merge:
   dupMarked : "dupMarked"
 
 
-table_columns_name:
-  "QualiMap: BamQC":
-        "header_qualimap_bamqc-mapped_reads": "BamQC %"
-
-
 table_columns_visible:
-   "QualiMap: BamQC":
       "# qualimap_bamqc-percentage_aligned": false
 
