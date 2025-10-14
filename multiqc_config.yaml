@@ -15,6 +15,5 @@ table_sample_merge:
   dupMarked : "dupMarked"
 
 
-table_columns_name:
-  Bowtie 2 / HiSAT2: 
-    "# bowtie_2_hisat2-overall_alignment_rate" : "ganf=gggg"
+table_columns_visible:
+    "header_bowtie_2_hisat2-overall_alignment_rate" : false
