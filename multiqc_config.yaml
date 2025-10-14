@@ -1,0 +1,16 @@
+data_format: 'yaml'
+show_analysis_time: False
+show_analysis_paths: False
+
+report_header_info:
+  - Contact E-mail: 'trex_info@cornell.edu'
+  - Reference Genome: !ENV "${MQC_GENOME}"
+custom_logo_url: https://trex.biotech.cornell.edu/
+plots_force_interactive: True
+
+
+table_sample_merge:
+  DEDUP : "DEDUP"
+  primary : "primary"
+  dupMarked : "dupMarked"
+  bamqc : "bamqc"
