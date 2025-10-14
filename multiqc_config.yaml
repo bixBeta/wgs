@@ -15,6 +15,6 @@ table_sample_merge:
   dupMarked : "dupMarked"
 
 
-table_columns_visible:
-      "# qualimap_bamqc-percentage_aligned": false
+table_columns_name:
+      "# qualimap_bamqc-percentage_aligned": "false"
 
