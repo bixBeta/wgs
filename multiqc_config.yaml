@@ -24,5 +24,3 @@ table_columns_visible:
   general_stats_table:
       "# qualimap_bamqc-percentage_aligned": false
 
-
-      qualimap_bamqc-percentage_aligned
