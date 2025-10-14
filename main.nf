@@ -126,7 +126,7 @@ workflow BTPAIRED {
             .set{fastp_out}
     } else {
 
-        fastp_out.trimmed_fqs = meta_ch
+        fastp_out = meta_ch
     }
 
     // Alignment 
@@ -139,7 +139,12 @@ workflow BTPAIRED {
 
     if( params.bowtie2 ){
         
-        BOWTIE2(fastp_out.trimmed_fqs, ch_genome, ch_genome_prefix)
+        if (params.fastp){
+            BOWTIE2(fastp_out.trimmed_fqs, ch_genome, ch_genome_prefix)
+        } else {
+            BOWTIE2(fastp_out, ch_genome, ch_genome_prefix)
+        }    
+        
         bt2_ch  = BOWTIE2.out.primary_sorted_bam
         bt2i_ch = BOWTIE2.out.primary_sorted_bai
 
