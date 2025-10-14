@@ -126,7 +126,7 @@ workflow BTPAIRED {
             .set{fastp_out}
     } else {
 
-        fastp_out = meta_ch
+        fastp_out.trimmed_fqs = meta_ch
     }
 
     // Alignment 
