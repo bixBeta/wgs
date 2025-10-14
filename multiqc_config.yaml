@@ -16,4 +16,4 @@ table_sample_merge:
   bamqc : "bamqc"
 
 section_comments: 
-  General_Statistics : "test"
+  qualimap : "test"
