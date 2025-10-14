@@ -13,4 +13,5 @@ table_sample_merge:
   de_duplicated : "DEDUP"
   primary : "primary"
   dupMarked : "dupMarked"
+  test : "dupMarkded.bam"
   bamqc : "bamqc/genome_results.txt"
