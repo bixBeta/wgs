@@ -15,5 +15,7 @@ table_sample_merge:
   dupMarked : "dupMarked"
   bamqc : "bamqc"
 
-section_comments: 
-  qualimap : "test"
+extra_info: 
+  General Stats: 
+    - "test"
+    - "test2"
