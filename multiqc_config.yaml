@@ -15,7 +15,7 @@ table_sample_merge:
   dupMarked : "dupMarked"
 
 
-table_column_name:
+table_columns_name:
   qualimap:
     percentage_aligned: "BamQC %"
 
