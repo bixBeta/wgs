@@ -14,6 +14,19 @@ table_sample_merge:
   primary : "primary"
   dupMarked : "dupMarked"
 
+table_sample_merge:
+  deduplicated : "DEDUP"
+  primary : "primary"
+  dupMarked : "dupMarked"
+
 
 table_columns_visible:
-    header_bowtie_2_hisat2-overall_alignment_rate : false
+  qualimap_bamqc-1_x_pc: true
+  qualimap_bamqc-5_x_pc: true
+  qualimap_bamqc-10_x_pc: true
+  fastp-after_filtering_q30_rate: true
+  qualimap_bamqc-percentage_aligned : false
+
+
+table_columns_name:
+  qualimap_bamqc-percentage_aligned : "% Reads Processed: qualimap:bamqc"
