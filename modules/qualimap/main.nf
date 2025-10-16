@@ -1,7 +1,7 @@
 
 process QUALIMAP {
 
-    maxForks 8
+    maxForks 4
     tag "$id"
     label "process_qualimap"
 
