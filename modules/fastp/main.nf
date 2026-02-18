@@ -6,8 +6,8 @@ process FASTP {
     label 'process_high'
     
     publishDir "trimmed_fastqs", mode: "symlink", overwrite: true, patterm: "*gz"
-    publishDir "trimmed_logs"  , mdoe: "symlink", overwrite: true, pattern: "*.fastp.html"
-    publishDir "trimmed_logs"  , mdoe: "symlink", overwrite: true, pattern: "*.fastp.json"
+    publishDir "trimmed_logs"  , mode: "symlink", overwrite: true, pattern: "*.fastp.html"
+    publishDir "trimmed_logs"  , mode: "symlink", overwrite: true, pattern: "*.fastp.json"
 
     input:
         tuple val(id), path(reads)
