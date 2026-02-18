@@ -50,7 +50,7 @@ process MARKDUPS {
             samtools idxstats ${id}.dupMarked.bam > ${id}.dupMarked.idxstats
 
 
-            samtools view -b -h -F 0X400 ${id}.dupMarked.bam > ${id}.DEDUP.bam
+            samtools view -b -h -F 0x400 ${id}.dupMarked.bam > ${id}.DEDUP.bam
 
             samtools index ${id}.DEDUP.bam
             samtools flagstat ${id}.DEDUP.bam > ${id}.DEDUP.flagstat
