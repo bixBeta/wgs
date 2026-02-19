@@ -5,7 +5,7 @@ process FASTP {
     tag "$id"
     label 'process_high'
     
-    publishDir "trimmed_fastqs", mode: "symlink", overwrite: true, patterm: "*gz"
+    publishDir "trimmed_fastqs", mode: "symlink", overwrite: true, pattern: "*gz"
     publishDir "trimmed_logs"  , mode: "symlink", overwrite: true, pattern: "*.fastp.html"
     publishDir "trimmed_logs"  , mode: "symlink", overwrite: true, pattern: "*.fastp.json"
 
