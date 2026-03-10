@@ -50,7 +50,7 @@ Args:
     * --bowtie2     : invokes bowtie2 alignment step
     * --fastp       : invokes fastp trimming
     * --mode        : PE (default)
-    * --genome      : reference genome ( Available genomes: hg38, mm10 & dm6 : Use --listGenomes for more details )
+    * --genome      : reference genome ( Available genomes: hg38, mm10, fc9 & dm6 : Use --listGenomes for more details )
 
 """
 
@@ -66,7 +66,8 @@ genomeDir = [
 mm10            :"/workdir/genomes/Mus_musculus/mm10/ENSEMBL/bowtie2index",
 hg38            :"/workdir/genomes/Homo_sapiens/hg38/ENSEMBL/BT2.ENSEMBL_INDEX",
 dm6             :"/workdir/genomes/Drosophila_melanogaster/dm6/ENSEMBL/Bowtie2.Index",
-canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/bowtie2"
+canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/bowtie2",
+fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/bowtie2"
 
 ]
 
@@ -75,7 +76,9 @@ bt2Prefix = [
 mm10            :"/mm10",
 hg38            :"/hg38",
 dm6             :"/dm6",
-canFam4         :"/cf4"
+canFam4         :"/cf4",
+fc9             :"/fc9"
+
 ]
 
 
