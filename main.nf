@@ -152,8 +152,8 @@ workflow BTPAIRED {
         bt2i_ch = BOWTIE2.out.primary_sorted_bai
 
         MARKDUPS(bt2_ch, bt2i_ch)
-        qc_ch = MARKDUPS.out.dupmarked_bam
-
+        // qc_ch = MARKDUPS.out.dupmarked_bam
+        qc_ch = MARKDUPS.out.dedup_bam
         QUALIMAP(qc_ch)
 
         mqc_ch = BOWTIE2.out.primary_log
