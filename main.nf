@@ -182,8 +182,8 @@ workflow BTPAIRED {
 
         QUALIMAP(qc_ch)
 
-        ch_gs   = channel.value(gSize[genome])
-        ch_2bit = channel.value(twoBits[genome])
+        ch_gs   = channel.value(gSize[params.genome])
+        ch_2bit = channel.value(twoBits[params.genome])
 
 
         GCBIAS(qc_ch, qc_ch_i, ch_2bit, ch_gs)
