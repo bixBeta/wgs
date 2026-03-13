@@ -81,6 +81,29 @@ fc9             :"/fc9"
 
 ]
 
+// 2Bit MAP  effective genome Size for deeptools
+
+twoBits = [
+
+mm10            :"/workdir/genomes/Mus_musculus/mm10/ENSEMBL/Mus_musculus.GRCm38.dna.2bit",
+hg38            :"nA",
+dm6             :"/workdir/genomes/Drosophila_melanogaster/dm6/ENSEMBL/Drosophila_melanogaster.BDGP6.32.dna.2bit",
+canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/canFam4.2bit",
+fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/Felis_catus.Felis_catus_9.0.dna.2bit"
+
+]
+
+
+gSize = [
+
+mm10            :2652783500,
+hg38            :2913022398,
+dm6             :142573017,
+canFam4         :2482000080,
+fc9             :2521863845
+
+]
+
 
 if( params.listGenomes) {
     
@@ -105,6 +128,7 @@ include {    BOWTIE2   } from './modules/bowtie2'
 include {    MARKDUPS  } from './modules/picard'
 include {    QUALIMAP  } from './modules/qualimap'
 include {    MQC       } from './modules/multiqc'
+include {    GCBIAS    } from './modules/deeptools'
 
 workflow BTPAIRED {
 
@@ -155,6 +179,12 @@ workflow BTPAIRED {
         // qc_ch = MARKDUPS.out.dupmarked_bam
         qc_ch = MARKDUPS.out.dedup_bam
         QUALIMAP(qc_ch)
+
+        ch_gs   = channel.value(gSize[genome])
+        ch_2bit = channel.value(twoBits[genome])
+
+
+        GCBIAS(qc_ch, MARKDUPS.out.dedup_bai, ch_2bit, ch_gs)
 
         mqc_ch = BOWTIE2.out.primary_log
                     .concat(
