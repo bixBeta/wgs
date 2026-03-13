@@ -14,6 +14,7 @@ table_sample_merge:
   primary : "primary"
   dupMarked : "dupMarked"
 
+custom_logo_width: 200  
 
 table_columns_visible:
   qualimap_bamqc-1_x_pc: true
