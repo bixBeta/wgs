@@ -19,6 +19,7 @@ process GCBIAS {
 
         tuple val(id), path("*.png")                 , emit: "gc_png"
         tuple val(id), path("*.txt")                 , emit: "gc_txt"
+        
     script:
 
         """
