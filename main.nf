@@ -177,14 +177,16 @@ workflow BTPAIRED {
 
         MARKDUPS(bt2_ch, bt2i_ch)
         // qc_ch = MARKDUPS.out.dupmarked_bam
-        qc_ch = MARKDUPS.out.dedup_bam
+        qc_ch   = MARKDUPS.out.dedup_bam
+        qc_ch_i = MARKDUPS.out.dedup_bai
+
         QUALIMAP(qc_ch)
 
         ch_gs   = channel.value(gSize[genome])
         ch_2bit = channel.value(twoBits[genome])
 
 
-        GCBIAS(qc_ch, MARKDUPS.out.dedup_bai, ch_2bit, ch_gs)
+        GCBIAS(qc_ch, qc_ch_i, ch_2bit, ch_gs)
 
         mqc_ch = BOWTIE2.out.primary_log
                     .concat(
