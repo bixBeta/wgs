@@ -23,8 +23,7 @@ process MQC {
        export  MQC_GENOME=${mqcgenome} 
        multiqc -n ${params.id}_all_modules \\
        --config ${conf} \\
-       --cl-config "custom_logo: ${logo}" \\
-        .
+       .
 
     """
 
