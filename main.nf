@@ -188,6 +188,12 @@ workflow BTPAIRED {
 
 
         GCBIAS(qc_ch, qc_ch_i, ch_2bit, ch_gs)
+        ch_gc_pngs = GCBIAS.out.gc_png.map { id, png -> png }
+                        | collect
+                        | view
+
+        GC_BIAS_REPORT(ch_gc_pngs, ch_quarto)
+        
 
         mqc_ch = BOWTIE2.out.primary_log
                     .concat(
