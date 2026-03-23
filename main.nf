@@ -13,7 +13,7 @@ params.fastp            = false
 params.mode             = "PE"
 params.genome           = null
 params.bamqc            = false
-
+params.quarto           = "${projectDir}/qmds/gc_bias.qmd"
 
 // Base Channels:
 
@@ -21,7 +21,7 @@ ch_pin                  = channel.value(params.id)
 ch_sheet                = channel.fromPath(params.sheet)
 ch_mqc_conf             = channel.fromPath("${projectDir}/multiqc_config.yaml")
 ch_mqc_logo             = channel.fromPath("${projectDir}/img/trex-mini.png")
-
+ch_quarto               = channel.fromPath(params.quarto)
 
 if( params.help ) {
 
@@ -123,12 +123,13 @@ if( params.listGenomes) {
 
 // Load all modules 
 
-include {    FASTP     } from './modules/fastp'
-include {    BOWTIE2   } from './modules/bowtie2'
-include {    MARKDUPS  } from './modules/picard'
-include {    QUALIMAP  } from './modules/qualimap'
-include {    MQC       } from './modules/multiqc'
-include {    GCBIAS    } from './modules/deeptools'
+include {    FASTP             } from './modules/fastp'
+include {    BOWTIE2           } from './modules/bowtie2'
+include {    MARKDUPS          } from './modules/picard'
+include {    QUALIMAP          } from './modules/qualimap'
+include {    MQC               } from './modules/multiqc'
+include {    GCBIAS            } from './modules/deeptools'
+include {    GC_BIAS_REPORT    } from './modules/quarto'
 
 workflow BTPAIRED {
 
