@@ -1,0 +1,24 @@
+---
+title: "GC Bias Report"
+format:
+  html:
+    embed-resources: true
+---
+
+## Deeptools GC Bias
+```{r}
+#| echo: false
+#| results: asis
+
+gc_plots <- list.files(path = ".", pattern = "_gc\\.png$", full.names = TRUE)
+sample_names <- gsub("_gc\\.png$", "", basename(gc_plots))
+
+cat("::: {.panel-tabset}\n\n")
+
+for (i in seq_along(gc_plots)) {
+  cat(paste0("## ", sample_names[i], "\n\n"))
+  cat(paste0("![](", gc_plots[i], ")\n\n"))
+}
+
+cat(":::\n")
+```
