@@ -12,6 +12,12 @@ process GC_BIAS_REPORT {
 
     script:
     """
-    quarto render ${qmd} --output gc_bias_report.html
+     export PATH=\$PATH:~/bin
+     export PATH=\$PATH:/usr/bin
+     export R_HOME=/usr/bin/R
+     export R_LIBS=/usr/local/lib/R/site-library:/usr/lib/R/site-library:/usr/lib/R/library
+     export PATH=/usr/local/bin:/usr/bin:/home/fa286/bin:\$PATH
+    ~/bin/quarto render ${qmd} --output gc_bias_report.html
+    
     """
 }
