@@ -1,11 +1,11 @@
 ---
-title: "GC Bias Report"
+title: "Deeptools Report"
 format:
   html:
     embed-resources: true
 ---
 
-## Deeptools GC Bias
+## GC Bias
 ```{r}
 #| echo: false
 #| results: asis
