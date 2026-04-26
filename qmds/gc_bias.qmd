@@ -5,6 +5,83 @@ format:
     embed-resources: true
 ---
 
+
+```{=html}
+<style>
+  .tab-navigator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .tab-navigator select {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  .tab-navigator button {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .tab-navigator button:hover { background: #e2e6ea; }
+  /* Hide the original tab bar */
+  .panel-tabset .nav-tabs { display: none !important; }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".panel-tabset").forEach(tabset => {
+    const tabs = tabset.querySelectorAll(".nav-tabs .nav-link");
+    if (tabs.length < 2) return;
+
+    // Build navigator UI
+    const nav = document.createElement("div");
+    nav.className = "tab-navigator";
+
+    const prev = document.createElement("button");
+    prev.textContent = "◀ Prev";
+
+    const select = document.createElement("select");
+    tabs.forEach((tab, i) => {
+      const opt = document.createElement("option");
+      opt.value = i;
+      opt.textContent = tab.textContent.trim();
+      if (tab.classList.contains("active")) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    const next = document.createElement("button");
+    next.textContent = "Next ▶";
+
+    nav.append(prev, select, next);
+    tabset.prepend(nav);
+
+    const goTo = (i) => {
+      tabs[i].click();
+      select.value = i;
+    };
+
+    select.addEventListener("change", () => goTo(+select.value));
+    prev.addEventListener("click", () => {
+      const cur = +select.value;
+      goTo(cur > 0 ? cur - 1 : tabs.length - 1);
+    });
+    next.addEventListener("click", () => {
+      const cur = +select.value;
+      goTo(cur < tabs.length - 1 ? cur + 1 : 0);
+    });
+  });
+});
+</script>
+```
+
+
 ## GC Bias
 ```{r}
 #| echo: false
