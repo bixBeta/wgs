@@ -30,15 +30,22 @@ format:
     font-size: 14px;
   }
   .tab-navigator button:hover { background: #e2e6ea; }
+  .tab-navigator .tab-counter {
+    font-size: 13px;
+    color: #666;
+    white-space: nowrap;
+  }
   /* Hide the original tab bar */
   .panel-tabset .nav-tabs { display: none !important; }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".panel-tabset").forEach(tabset => {
+  document.querySelectorAll(".panel-tabset").forEach((tabset, tabsetIndex) => {
     const tabs = tabset.querySelectorAll(".nav-tabs .nav-link");
     if (tabs.length < 2) return;
+
+    const storageKey = `activeTab_${tabsetIndex}`;
 
     // Build navigator UI
     const nav = document.createElement("div");
@@ -59,28 +66,50 @@ document.addEventListener("DOMContentLoaded", () => {
     const next = document.createElement("button");
     next.textContent = "Next ▶";
 
-    nav.append(prev, select, next);
+    const counter = document.createElement("span");
+    counter.className = "tab-counter";
+
+    nav.append(prev, select, next, counter);
     tabset.prepend(nav);
+
+    const updateCounter = (i) => {
+      counter.textContent = `${i + 1} / ${tabs.length}`;
+    };
 
     const goTo = (i) => {
       tabs[i].click();
       select.value = i;
+      updateCounter(i);
+      sessionStorage.setItem(storageKey, i);
     };
 
+    // Restore last viewed sample on reload
+    const saved = sessionStorage.getItem(storageKey);
+    const initialIndex = saved !== null ? +saved : [...tabs].findIndex(t => t.classList.contains("active"));
+    goTo(initialIndex >= 0 ? initialIndex : 0);
+
     select.addEventListener("change", () => goTo(+select.value));
+
     prev.addEventListener("click", () => {
       const cur = +select.value;
       goTo(cur > 0 ? cur - 1 : tabs.length - 1);
     });
+
     next.addEventListener("click", () => {
       const cur = +select.value;
       goTo(cur < tabs.length - 1 ? cur + 1 : 0);
+    });
+
+    // Keyboard navigation (scoped to focused tabset)
+    tabset.setAttribute("tabindex", "0");
+    tabset.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next.click();
+      if (e.key === "ArrowLeft")  prev.click();
     });
   });
 });
 </script>
 ```
-
 
 ## GC Bias
 ```{r}
