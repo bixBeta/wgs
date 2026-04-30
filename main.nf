@@ -6,6 +6,7 @@ params.help             = false
 params.fastqs           = false
 params.id               = "TREx_ID"
 params.listGenomes      = false
+params.gcbias           = false
 
 // Module Params:
 params.bowtie2          = false
@@ -49,6 +50,7 @@ Args:
     * --bwa         : deprecated
     * --bowtie2     : invokes bowtie2 alignment step
     * --fastp       : invokes fastp trimming
+    * --gcbias      : invokes GCBias Step
     * --mode        : PE (default)
     * --genome      : reference genome ( Available genomes: hg38, mm10, fc9 & dm6 : Use --listGenomes for more details )
 
@@ -183,17 +185,19 @@ workflow BTPAIRED {
 
         QUALIMAP(qc_ch)
 
-        ch_gs   = channel.value(gSize[params.genome])
-        ch_2bit = channel.value(twoBits[params.genome])
+        if( params.gcbias) {
+            ch_gs   = channel.value(gSize[params.genome])
+            ch_2bit = channel.value(twoBits[params.genome])
 
 
-        GCBIAS(qc_ch, qc_ch_i, ch_2bit, ch_gs)
-        ch_gc_pngs = GCBIAS.out.gc_png.map { id, png -> png }
-                        | collect
-                        | view
+            GCBIAS(qc_ch, qc_ch_i, ch_2bit, ch_gs)
+            ch_gc_pngs = GCBIAS.out.gc_png.map { id, png -> png }
+                            | collect
+                            | view
 
-        GC_BIAS_REPORT(ch_gc_pngs, ch_quarto)
+            GC_BIAS_REPORT(ch_gc_pngs, ch_quarto)
         
+        }
 
         mqc_ch = BOWTIE2.out.primary_log
                     .concat(
