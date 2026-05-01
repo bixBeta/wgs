@@ -71,7 +71,8 @@ mm10            :"/workdir/genomes/Mus_musculus/mm10/ENSEMBL/bowtie2index",
 hg38            :"/workdir/genomes/Homo_sapiens/hg38/ENSEMBL/BT2.ENSEMBL_INDEX",
 dm6             :"/workdir/genomes/Drosophila_melanogaster/dm6/ENSEMBL/Bowtie2.Index",
 canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/bowtie2",
-fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/bowtie2"
+fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/bowtie2",
+vitis           :"/workdir/genomes/Vitis_vinifera/GCA_000003745.2/ENSEMBL/Vitis_vinifera.bowtie2"
 
 ]
 
@@ -81,7 +82,8 @@ mm10            :"/mm10",
 hg38            :"/hg38",
 dm6             :"/dm6",
 canFam4         :"/cf4",
-fc9             :"/fc9"
+fc9             :"/fc9",
+vitis           :"/vitis"
 
 ]
 
