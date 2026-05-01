@@ -59,7 +59,9 @@ Args:
     exit 0
 }
 
-
+if ( params.gcbias && !params.bowtie2 ) {
+    error "--gcbias requires --bowtie2 to be set (GC bias analysis needs aligned BAMs)"
+}
 
 // BT2 Indices MAP
 
