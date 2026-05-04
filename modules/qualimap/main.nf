@@ -1,7 +1,7 @@
 
 process QUALIMAP {
 
-    maxForks 4
+    maxForks 2
     tag "$id"
     label "process_qualimap"
 
@@ -20,7 +20,7 @@ process QUALIMAP {
         """
             qualimap bamqc -bam ${dup_marked_bam} \\
             -nt 16 -c \\
-            --java-mem-size=30G \\
+            --java-mem-size=40G \\
             -outdir ${id}.bamqc
         
         sed -i "s/bam file = ${id}.DEDUP.bam/bam file = ${id}.bam/g" ${id}.bamqc/genome_results.txt
