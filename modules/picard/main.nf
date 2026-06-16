@@ -5,7 +5,7 @@ process MARKDUPS {
     tag "$id"
     label "process_high"
 
-   
+
     publishDir "STATS/SAMTOOLS",             mode: "symlink", overwrite: true, pattern: "*stat*"
     publishDir "STATS/PICARD/",              mode: "symlink", overwrite: true, pattern: "*MarkDuplicates.metrics.txt"
     publishDir "DEDUP_BAMS",                 mode: "symlink", overwrite: true, pattern: "*DEDUP.bam*"
@@ -19,7 +19,7 @@ process MARKDUPS {
         tuple val(id), path("*.dupMarked.bam")                      , emit: "dupmarked_bam"
         tuple val(id), path("*.dupMarked.bam.bai")                  , emit: "dupmarked_bai"
         path("*.dupMarked.flagstat")                                , emit: "dupmarked_flagstat"
-        path("*.dupMarked.idxstats")                                , emit: "dupmarked_idxstats"        
+        path("*.dupMarked.idxstats")                                , emit: "dupmarked_idxstats"
 
         path("*.MarkDuplicates.metrics.txt")                        , emit: "dup_stats"
 
@@ -27,6 +27,7 @@ process MARKDUPS {
         tuple val(id), path("*DEDUP.bam.bai")                        , emit: "dedup_bai"
         path("*.DEDUP.flagstat")                                     , emit: "dedup_flagstat"
         path("*.DEDUP.idxstats")                                     , emit: "dedup_idxstats"
+        path "versions.yml"                                          , emit: "versions"
 
     script:
 
@@ -41,19 +42,21 @@ process MARKDUPS {
                     OPTICAL_DUPLICATE_PIXEL_DISTANCE=2500 \\
                     TMP_DIR=tmp
 
-            
-            
-
             samtools index ${id}.dupMarked.bam
             samtools flagstat ${id}.dupMarked.bam> ${id}.dupMarked.flagstat
             samtools idxstats ${id}.dupMarked.bam > ${id}.dupMarked.idxstats
-
 
             samtools view -b -h -F 0x400 ${id}.dupMarked.bam > ${id}.DEDUP.bam
 
             samtools index ${id}.DEDUP.bam
             samtools flagstat ${id}.DEDUP.bam > ${id}.DEDUP.flagstat
             samtools idxstats ${id}.DEDUP.bam > ${id}.DEDUP.idxstats
+
+            cat <<-END_VERSIONS > versions.yml
+            "MARKDUPS":
+                picard: \$(ls /opt/conda/share/ 2>/dev/null | grep '^picard-' | head -1 | sed 's/picard-//' | sed 's/-[0-9]*\$//')
+                samtools: \$(samtools --version 2>&1 | head -1 | sed 's/samtools //')
+            END_VERSIONS
 
         """
 

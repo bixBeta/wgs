@@ -4,23 +4,24 @@ process FASTP {
     maxForks 8
     tag "$id"
     label 'process_high'
-    
+
     publishDir "trimmed_fastqs", mode: "symlink", overwrite: true, pattern: "*gz"
     publishDir "trimmed_logs"  , mode: "symlink", overwrite: true, pattern: "*.fastp.html"
     publishDir "trimmed_logs"  , mode: "symlink", overwrite: true, pattern: "*.fastp.json"
 
     input:
         tuple val(id), path(reads)
-    
+
     output:
         tuple val(id), path("*gz")          , emit: trimmed_fqs
         tuple val(id), path("*html")        , emit: fastp_htmls
-        tuple val(id), path("*json")        , emit: fastp_jsons    
-        
+        tuple val(id), path("*json")        , emit: fastp_jsons
+        path "versions.yml"                 , emit: versions
+
     script:
 
     if ( runmode == "SE" ){
-        
+
         """
         fastp \\
         -z 4 -w 16 \\
@@ -30,7 +31,11 @@ process FASTP {
         -o ${id}_val_1.fq.gz \\
         -h ${id}.fastp.html \\
         -j ${id}.fastp.json
-    
+
+        cat <<-END_VERSIONS > versions.yml
+        "FASTP":
+            fastp: \$(fastp --version 2>&1 | head -1 | sed 's/fastp //')
+        END_VERSIONS
         """
 
     }
@@ -48,7 +53,11 @@ process FASTP {
             -O ${id}_val_2.fq.gz \\
             -h ${id}.fastp.html \\
             -j ${id}.fastp.json
-        
+
+            cat <<-END_VERSIONS > versions.yml
+            "FASTP":
+                fastp: \$(fastp --version 2>&1 | head -1 | sed 's/fastp //')
+            END_VERSIONS
         """
 
 

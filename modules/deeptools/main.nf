@@ -1,6 +1,6 @@
 process GCBIAS {
 
-    maxForks 8 
+    maxForks 8
     tag "$id"
     label "process_deeptools"
 
@@ -19,18 +19,24 @@ process GCBIAS {
 
         tuple val(id), path("*.png")                 , emit: "gc_png"
         tuple val(id), path("*.txt")                 , emit: "gc_txt"
+        path "versions.yml"                          , emit: "versions"
 
     script:
 
         """
             mkdir -p tmp/
             export MPLCONFIGDIR="tmp/"
-            
+
             computeGCBias -b ${dedup_bam} \\
             --effectiveGenomeSize ${egsize} \\
             -g ${twoBits} -l 200 \\
             --GCbiasFrequenciesFile ${id}_gcBias_freq.txt \\
             --biasPlot ${id}_gc.png
+
+            cat <<-END_VERSIONS > versions.yml
+            "GCBIAS":
+                deeptools: \$(computeGCBias --version 2>&1 | head -1 | sed 's/computeGCBias //')
+            END_VERSIONS
 
         """
 

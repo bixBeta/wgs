@@ -21,6 +21,7 @@ process BOWTIE2 {
         path("*.primary.log")                                   , emit: "primary_log"
         path("*.primary.flagstat")                              , emit: "primary_flagstat"
         path("*.primary.idxstats")                              , emit: "primary_idxstats"
+        path "versions.yml"                                     , emit: "versions"
 
     script:
 
@@ -42,6 +43,12 @@ process BOWTIE2 {
 
         samtools flagstat ${id}.primary.sorted.bam > ${id}.primary.flagstat
         samtools idxstats ${id}.primary.sorted.bam > ${id}.primary.idxstats
+
+        cat <<-END_VERSIONS > versions.yml
+        "BOWTIE2":
+            bowtie2: \$(bowtie2 --version 2>&1 | head -1 | sed 's/.*version //')
+            samtools: \$(samtools --version 2>&1 | head -1 | sed 's/samtools //')
+        END_VERSIONS
 
         """
 

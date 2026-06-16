@@ -129,13 +129,14 @@ if( params.listGenomes) {
 
 // Load all modules 
 
-include {    FASTP             } from './modules/fastp'
-include {    BOWTIE2           } from './modules/bowtie2'
-include {    MARKDUPS          } from './modules/picard'
-include {    QUALIMAP          } from './modules/qualimap'
-include {    MQC               } from './modules/multiqc'
-include {    GCBIAS            } from './modules/deeptools'
-include {    GC_BIAS_REPORT    } from './modules/quarto'
+include {    FASTP               } from './modules/fastp'
+include {    BOWTIE2             } from './modules/bowtie2'
+include {    MARKDUPS            } from './modules/picard'
+include {    QUALIMAP            } from './modules/qualimap'
+include {    MQC                 } from './modules/multiqc'
+include {    GCBIAS              } from './modules/deeptools'
+include {    GC_BIAS_REPORT      } from './modules/quarto'
+include {    SOFTWAREVERSIONS    } from './modules/softwareversions'
 
 workflow BTPAIRED {
 
@@ -203,16 +204,32 @@ workflow BTPAIRED {
         
         }
 
+        // Collect software versions from all processes (deduplicated by SOFTWAREVERSIONS)
+        ch_versions = BOWTIE2.out.versions
+                        .mix(MARKDUPS.out.versions)
+                        .mix(QUALIMAP.out.versions)
+
+        if( params.fastp ){
+            ch_versions = ch_versions.mix(FASTP.out.versions)
+        }
+
+        if( params.gcbias ){
+            ch_versions = ch_versions.mix(GCBIAS.out.versions)
+        }
+
+        SOFTWAREVERSIONS(ch_versions.collect())
+
         mqc_ch = BOWTIE2.out.primary_log
                     .concat(
-                        BOWTIE2.out.primary_flagstat, 
+                        BOWTIE2.out.primary_flagstat,
                         BOWTIE2.out.primary_idxstats,
                         QUALIMAP.out.bamqc_out,
                         MARKDUPS.out.dupmarked_flagstat,
                         MARKDUPS.out.dupmarked_idxstats,
                         MARKDUPS.out.dedup_flagstat,
                         MARKDUPS.out.dedup_idxstats,
-                        MARKDUPS.out.dup_stats)
+                        MARKDUPS.out.dup_stats,
+                        SOFTWAREVERSIONS.out.mqc_yml)
                     .collect()
                     .view()
 
