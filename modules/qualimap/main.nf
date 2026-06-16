@@ -14,7 +14,7 @@ process QUALIMAP {
 
     output:
         path("*bamqc")                   , emit: bamqc_out
-        path "versions.yml"              , emit: versions
+        path "qualimap_versions.yml"     , emit: versions
 
     script:
 
@@ -26,7 +26,7 @@ process QUALIMAP {
 
         sed -i "s/bam file = ${id}.DEDUP.bam/bam file = ${id}.bam/g" ${id}.bamqc/genome_results.txt
 
-        cat <<-END_VERSIONS > versions.yml
+        cat <<-END_VERSIONS > qualimap_versions.yml
         "QUALIMAP":
             qualimap: \$(qualimap 2>&1 | grep -oP 'QualiMap v\\K\\S+' | head -1)
         END_VERSIONS

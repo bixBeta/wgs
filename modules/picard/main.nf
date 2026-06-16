@@ -27,7 +27,7 @@ process MARKDUPS {
         tuple val(id), path("*DEDUP.bam.bai")                        , emit: "dedup_bai"
         path("*.DEDUP.flagstat")                                     , emit: "dedup_flagstat"
         path("*.DEDUP.idxstats")                                     , emit: "dedup_idxstats"
-        path "versions.yml"                                          , emit: "versions"
+        path "picard_versions.yml"                                   , emit: "versions"
 
     script:
 
@@ -52,7 +52,7 @@ process MARKDUPS {
             samtools flagstat ${id}.DEDUP.bam > ${id}.DEDUP.flagstat
             samtools idxstats ${id}.DEDUP.bam > ${id}.DEDUP.idxstats
 
-            cat <<-END_VERSIONS > versions.yml
+            cat <<-END_VERSIONS > picard_versions.yml
             "MARKDUPS":
                 picard: \$(ls /opt/conda/share/ 2>/dev/null | grep '^picard-' | head -1 | sed 's/picard-//' | sed 's/-[0-9]*\$//')
                 samtools: \$(samtools --version 2>&1 | head -1 | sed 's/samtools //')

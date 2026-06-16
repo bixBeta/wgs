@@ -19,7 +19,7 @@ process GCBIAS {
 
         tuple val(id), path("*.png")                 , emit: "gc_png"
         tuple val(id), path("*.txt")                 , emit: "gc_txt"
-        path "versions.yml"                          , emit: "versions"
+        path "deeptools_versions.yml"                , emit: "versions"
 
     script:
 
@@ -33,7 +33,7 @@ process GCBIAS {
             --GCbiasFrequenciesFile ${id}_gcBias_freq.txt \\
             --biasPlot ${id}_gc.png
 
-            cat <<-END_VERSIONS > versions.yml
+            cat <<-END_VERSIONS > deeptools_versions.yml
             "GCBIAS":
                 deeptools: \$(computeGCBias --version 2>&1 | head -1 | sed 's/computeGCBias //')
             END_VERSIONS

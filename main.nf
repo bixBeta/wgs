@@ -204,17 +204,17 @@ workflow BTPAIRED {
         
         }
 
-        // Collect software versions from all processes (deduplicated by SOFTWAREVERSIONS)
-        ch_versions = BOWTIE2.out.versions
-                        .mix(MARKDUPS.out.versions)
-                        .mix(QUALIMAP.out.versions)
+        // Collect software versions — .first() ensures one file per process regardless of sample count
+        ch_versions = BOWTIE2.out.versions.first()
+                        .mix(MARKDUPS.out.versions.first())
+                        .mix(QUALIMAP.out.versions.first())
 
         if( params.fastp ){
-            ch_versions = ch_versions.mix(FASTP.out.versions)
+            ch_versions = ch_versions.mix(FASTP.out.versions.first())
         }
 
         if( params.gcbias ){
-            ch_versions = ch_versions.mix(GCBIAS.out.versions)
+            ch_versions = ch_versions.mix(GCBIAS.out.versions.first())
         }
 
         SOFTWAREVERSIONS(ch_versions.collect())

@@ -13,10 +13,10 @@ process FASTP {
         tuple val(id), path(reads)
 
     output:
-        tuple val(id), path("*gz")          , emit: trimmed_fqs
-        tuple val(id), path("*html")        , emit: fastp_htmls
-        tuple val(id), path("*json")        , emit: fastp_jsons
-        path "versions.yml"                 , emit: versions
+        tuple val(id), path("*gz")              , emit: trimmed_fqs
+        tuple val(id), path("*html")            , emit: fastp_htmls
+        tuple val(id), path("*json")            , emit: fastp_jsons
+        path "fastp_versions.yml"               , emit: versions
 
     script:
 
@@ -32,7 +32,7 @@ process FASTP {
         -h ${id}.fastp.html \\
         -j ${id}.fastp.json
 
-        cat <<-END_VERSIONS > versions.yml
+        cat <<-END_VERSIONS > fastp_versions.yml
         "FASTP":
             fastp: \$(fastp --version 2>&1 | head -1 | sed 's/fastp //')
         END_VERSIONS
@@ -54,7 +54,7 @@ process FASTP {
             -h ${id}.fastp.html \\
             -j ${id}.fastp.json
 
-            cat <<-END_VERSIONS > versions.yml
+            cat <<-END_VERSIONS > fastp_versions.yml
             "FASTP":
                 fastp: \$(fastp --version 2>&1 | head -1 | sed 's/fastp //')
             END_VERSIONS
