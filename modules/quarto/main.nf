@@ -1,7 +1,9 @@
+gcgenome = params.genome
+
 process GC_BIAS_REPORT {
 
     label "process_quarto"
-    publishDir "Reports", mode: 'copy'
+    publishDir "Reports/${gcgenome}", mode: 'copy'
 
     input:
     path pngs
