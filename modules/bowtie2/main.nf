@@ -30,6 +30,10 @@ process BOWTIE2 {
               -x  ${genome}${genomePrefix} \\
               -1 ${trimmed[0]} -2 ${trimmed[1]} \\
               --threads 24 \\
+              --rg-id ${id} \\
+              --rg SM:${id} \\
+              --rg PL:ILLUMINA \\
+              --rg LB:${id} \\
               -S - | samtools view -@ 24 -b -h -F 0x0100 -O BAM -o ${id}.primary.bam)2>${id}.primary.log
 
 
