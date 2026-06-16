@@ -11,8 +11,8 @@ Nextflow DSL2 pipeline for whole-genome sequencing analysis on BioHPC Cornell se
 ## Prerequisites (BioHPC)
 
 - **Nextflow** ≥ 23.x (`module load nextflow` or available in your PATH)
-- **Apptainer/Singularity** — available by default on BioHPC nodes
-- No local software installation required — all tools run inside containers pulled from GHCR
+- **Apptainer/Singularity** — available by default on BioHPC nodes (Docker is not required)
+- No local software installation required — all tools run inside Singularity containers pulled automatically from GHCR
 
 ---
 
