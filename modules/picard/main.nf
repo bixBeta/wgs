@@ -31,8 +31,7 @@ process MARKDUPS {
     script:
 
         """
-            java -jar /myBin/picard.jar \\
-                    MarkDuplicates \\
+            picard MarkDuplicates \\
                     INPUT=${primary_bam} \\
                     OUTPUT=${id}.dupMarked.bam \\
                     ASSUME_SORTED=true \\
