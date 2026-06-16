@@ -11,7 +11,7 @@ process BOWTIE2 {
 
     input:
         tuple val(id), path(trimmed)
-        path genome
+        val genome
         val genomePrefix
 
 
