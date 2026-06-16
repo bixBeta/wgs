@@ -2,6 +2,9 @@ FROM mambaorg/micromamba:1.5.8
 
 USER root
 
+RUN apt-get update && apt-get install -y --no-install-recommends procps \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN micromamba install -y -n base -c bioconda -c conda-forge \
     qualimap \
     && micromamba clean -afy
