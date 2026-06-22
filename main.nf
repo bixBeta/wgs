@@ -72,7 +72,8 @@ hg38            :"/workdir/genomes/Homo_sapiens/hg38/ENSEMBL/bowtie2",
 dm6             :"/workdir/genomes/Drosophila_melanogaster/dm6/ENSEMBL/Bowtie2.Index",
 canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/bowtie2",
 fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/bowtie2",
-vitis           :"/workdir/genomes/Vitis_vinifera/GCA_000003745.2/ENSEMBL/Vitis_vinifera.bowtie2"
+vitis           :"/workdir/genomes/Vitis_vinifera/GCA_000003745.2/ENSEMBL/Vitis_vinifera.bowtie2",
+talalunga       :"/workdir/genomes/Thunnus_alalunga/bowtie2"
 
 ]
 
@@ -83,7 +84,8 @@ hg38            :"/GRCh38",
 dm6             :"/dm6",
 canFam4         :"/cf4",
 fc9             :"/fc9",
-vitis           :"/vitis"
+vitis           :"/vitis",
+talalunga       :"/Talalunga"
 
 ]
 
@@ -95,7 +97,8 @@ mm10            :"/workdir/genomes/Mus_musculus/mm10/ENSEMBL/Mus_musculus.GRCm38
 hg38            :"nA",
 dm6             :"/workdir/genomes/Drosophila_melanogaster/dm6/ENSEMBL/Drosophila_melanogaster.BDGP6.32.dna.2bit",
 canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/canFam4.2bit",
-fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/Felis_catus.Felis_catus_9.0.dna.2bit"
+fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/Felis_catus.Felis_catus_9.0.dna.2bit",
+talalunga       :"/workdir/genomes/Thunnus_alalunga/Thunnus_alalunga.2bit"
 
 ]
 
@@ -106,7 +109,8 @@ mm10            :2652783500,
 hg38            :2913022398,
 dm6             :142573017,
 canFam4         :2482000080,
-fc9             :2521863845
+fc9             :2521863845,
+talalunga       :0
 
 ]
 
