@@ -146,7 +146,7 @@ All images are hosted on GHCR and pulled automatically by Nextflow.
 ├── GCBias_DeepTools/        # GC bias PNGs + TXT (if --gcbias)
 └── Reports/
     ├── <genome>/            # MultiQC HTML report
-    └── gc_bias_report.html  # Quarto GC bias report (if --gcbias)
+    └── <genome>/gc_bias_report.html  # Quarto GC bias report (if --gcbias)
 ```
 
 ---
