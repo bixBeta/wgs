@@ -1,6 +1,6 @@
 [![Build and Push Docker Images](https://github.com/bixBeta/wgs/actions/workflows/docker-build.yml/badge.svg)](https://github.com/bixBeta/wgs/actions/workflows/docker-build.yml)
 
-# WGS Workflow — @bixBeta
+# WGS Workflow — BioHPC Cornell
 
 Nextflow DSL2 pipeline for whole-genome sequencing analysis on BioHPC Cornell servers.
 
