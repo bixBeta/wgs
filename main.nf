@@ -73,7 +73,8 @@ dm6             :"/workdir/genomes/Drosophila_melanogaster/dm6/ENSEMBL/Bowtie2.I
 canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/bowtie2",
 fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/bowtie2",
 vitis           :"/workdir/genomes/Vitis_vinifera/GCA_000003745.2/ENSEMBL/Vitis_vinifera.bowtie2",
-talalunga       :"/workdir/genomes/Thunnus_alalunga/bowtie2"
+talalunga       :"/workdir/genomes/Thunnus_alalunga/bowtie2",
+apple           :""
 
 ]
 
@@ -85,8 +86,8 @@ dm6             :"/dm6",
 canFam4         :"/cf4",
 fc9             :"/fc9",
 vitis           :"/vitis",
-talalunga       :"/Talalunga"
-
+talalunga       :"/Talalunga",
+apple           :"/apple"
 ]
 
 // 2Bit MAP  effective genome Size for deeptools
@@ -98,8 +99,8 @@ hg38            :"nA",
 dm6             :"/workdir/genomes/Drosophila_melanogaster/dm6/ENSEMBL/Drosophila_melanogaster.BDGP6.32.dna.2bit",
 canFam4         :"/workdir/genomes/Canis_familiaris/canFam4/NCBI/canFam4.2bit",
 fc9             :"/workdir/genomes/Felis_catus/Felis_catus9.0/Ensembl/Felis_catus.Felis_catus_9.0.dna.2bit",
-talalunga       :"/workdir/genomes/Thunnus_alalunga/Thunnus_alalunga.2bit"
-
+talalunga       :"/workdir/genomes/Thunnus_alalunga/Thunnus_alalunga.2bit",
+apple           :"/workdir/genomes/Malus_domestica/GDT2T_hap1/NCBI/GCF_042453785.1_GDT2T_hap1_genomic.2bit"
 ]
 
 
