@@ -1,7 +1,7 @@
 
 process BOWTIE2 {
 
-    maxForks 6
+    maxForks 3
     tag "$id, $genomePrefix"
     label "process_high"
 
