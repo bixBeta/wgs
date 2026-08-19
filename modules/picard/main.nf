@@ -1,7 +1,9 @@
 
 process MARKDUPS {
 
-    maxForks 8
+    maxForks 3
+    errorStrategy { task.attempt <= 2 ? 'retry' : 'finish' }
+    maxRetries 2
     tag "$id"
     label "process_high"
 
