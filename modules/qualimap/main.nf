@@ -2,6 +2,8 @@
 process QUALIMAP {
 
     maxForks 2
+    errorStrategy { task.attempt <= 2 ? 'retry' : 'finish' }
+    maxRetries 2
     tag "$id"
     label "process_qualimap"
 
