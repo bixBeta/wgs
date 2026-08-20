@@ -1,7 +1,7 @@
 
 process BOWTIE2 {
 
-    maxForks 3
+    maxForks 2
     errorStrategy { task.attempt <= 2 ? 'retry' : 'finish' }
     maxRetries 2
     tag "$id, $genomePrefix"
