@@ -5,7 +5,7 @@ process FASTP {
     errorStrategy { task.attempt <= 2 ? 'retry' : 'finish' }
     maxRetries 2
     tag "$id"
-    label 'process_high'
+    label 'process_fastp'
 
     publishDir "trimmed_fastqs", mode: "symlink", overwrite: true, pattern: "*gz"
     publishDir "trimmed_logs"  , mode: "symlink", overwrite: true, pattern: "*.fastp.html"
@@ -26,7 +26,7 @@ process FASTP {
 
         """
         fastp \\
-        -z 4 -w 16 \\
+        -z 4 -w ${task.cpus} \\
         --length_required 50 --qualified_quality_phred 20 \\
         --trim_poly_g \\
         -i ${reads} \\
@@ -46,7 +46,7 @@ process FASTP {
 
         """
             fastp \\
-            -z 4 -w 16 \\
+            -z 4 -w ${task.cpus} \\
             --length_required 50 --qualified_quality_phred 20 \\
             --trim_poly_g \\
             -i ${reads[0]} \\
