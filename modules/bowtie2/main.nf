@@ -32,18 +32,18 @@ process BOWTIE2 {
             --no-unal \\
               -x  ${genome}${genomePrefix} \\
               -1 ${trimmed[0]} -2 ${trimmed[1]} \\
-              --threads ${task.cpus} \\
+              --threads 24 \\
               --rg-id ${id} \\
               --rg SM:${id} \\
               --rg PL:ILLUMINA \\
               --rg LB:${id} \\
-              -S - | samtools view -@ ${task.cpus} -b -h -F 0x0100 -O BAM -o ${id}.primary.bam)2>${id}.primary.log
+              -S - | samtools view -@ 24 -b -h -F 0x0100 -O BAM -o ${id}.primary.bam)2>${id}.primary.log
 
 
-        samtools sort -@ ${task.cpus} ${id}.primary.bam > ${id}.primary.sorted.bam
-        samtools index -@ ${task.cpus} ${id}.primary.sorted.bam
+        samtools sort ${id}.primary.bam > ${id}.primary.sorted.bam
+        samtools index ${id}.primary.sorted.bam 
 
-        samtools flagstat -@ ${task.cpus} ${id}.primary.sorted.bam > ${id}.primary.flagstat
+        samtools flagstat ${id}.primary.sorted.bam > ${id}.primary.flagstat
         samtools idxstats ${id}.primary.sorted.bam > ${id}.primary.idxstats
 
         cat <<-END_VERSIONS > bowtie2_versions.yml

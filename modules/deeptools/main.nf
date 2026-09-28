@@ -32,7 +32,6 @@ process GCBIAS {
             computeGCBias -b ${dedup_bam} \\
             --effectiveGenomeSize ${egsize} \\
             -g ${twoBits} -l 200 \\
-            -p ${task.cpus} \\
             --GCbiasFrequenciesFile ${id}_gcBias_freq.txt \\
             --biasPlot ${id}_gc.png
 
