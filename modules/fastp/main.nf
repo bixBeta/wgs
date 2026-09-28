@@ -1,7 +1,7 @@
 runmode = params.mode
 
 process FASTP {
-    maxForks 3
+    maxForks 1
     errorStrategy { task.attempt <= 2 ? 'retry' : 'finish' }
     maxRetries 2
     tag "$id"
