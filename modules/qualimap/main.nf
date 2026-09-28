@@ -22,8 +22,8 @@ process QUALIMAP {
 
         """
             qualimap bamqc -bam ${dup_marked_bam} \\
-            -nt 16 -c \\
-            --java-mem-size=40G \\
+            -nt ${task.cpus} -c \\
+            --java-mem-size=${task.memory.toGiga() - 20}G \\
             -outdir ${id}.bamqc
 
         sed -i "s/bam file = ${id}.DEDUP.bam/bam file = ${id}.bam/g" ${id}.bamqc/genome_results.txt

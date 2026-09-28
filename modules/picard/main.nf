@@ -44,14 +44,14 @@ process MARKDUPS {
                     OPTICAL_DUPLICATE_PIXEL_DISTANCE=2500 \\
                     TMP_DIR=tmp
 
-            samtools index ${id}.dupMarked.bam
-            samtools flagstat ${id}.dupMarked.bam> ${id}.dupMarked.flagstat
+            samtools index -@ ${task.cpus} ${id}.dupMarked.bam
+            samtools flagstat -@ ${task.cpus} ${id}.dupMarked.bam> ${id}.dupMarked.flagstat
             samtools idxstats ${id}.dupMarked.bam > ${id}.dupMarked.idxstats
 
-            samtools view -b -h -F 0x400 ${id}.dupMarked.bam > ${id}.DEDUP.bam
+            samtools view -@ ${task.cpus} -b -h -F 0x400 ${id}.dupMarked.bam > ${id}.DEDUP.bam
 
-            samtools index ${id}.DEDUP.bam
-            samtools flagstat ${id}.DEDUP.bam > ${id}.DEDUP.flagstat
+            samtools index -@ ${task.cpus} ${id}.DEDUP.bam
+            samtools flagstat -@ ${task.cpus} ${id}.DEDUP.bam > ${id}.DEDUP.flagstat
             samtools idxstats ${id}.DEDUP.bam > ${id}.DEDUP.idxstats
 
             cat <<-END_VERSIONS > picard_versions.yml
